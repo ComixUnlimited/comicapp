@@ -1,6 +1,7 @@
 import { load } from 'cheerio';
 import axios from 'axios';
 import infoScraper from './infoScraper';
+import { fixCorsErrors } from 'fix-cors-errors'; 
 
 export const parentScraper = (uri, page) => {
   return new Promise((resolve, reject) => {
@@ -19,7 +20,7 @@ export const parentScraper = (uri, page) => {
           // If the href is a full URL (https://getcomics.org/...), remove the base part
           if (href.startsWith('https://getcomics.org')) {
             // Remove 'https://getcomics.org' and replace with the proxy URL base
-            href = href.replace('https://getcomics.org', 'https://getcomics.info');
+            href = href.replace('https://getcomics.org', fixCorsErrors('https://getcomics.info'));
           }
 
           // Only include individual comics, not bundles

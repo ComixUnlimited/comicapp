@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { fixCorsErrors } from 'fix-cors-errors'; 
 import infoScraper from './infoScraper';
 const { URL } = require('./endpoints');
 const cheerio = require('cheerio');
@@ -32,7 +33,7 @@ export const getComicsThroughSearch = (query, page = 1) => {
               const targetUrl = href.replace('https://getcomics.org', '');
 
               // Route through the proxy server with the modified href
-              axios(`https://getcomics.info${targetUrl}`).then(response => {
+              axios(fixCorsErrors(`https://getcomics.info${targetUrl}`)).then(response => {
                 const $ = cheerio.load(response.data);
 
                 const title = $('.post-info').find('h1').text().trim();
