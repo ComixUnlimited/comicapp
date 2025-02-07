@@ -1,8 +1,15 @@
 {
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/comics/:path*",
-      "destination": "/api/proxy/:path*"
+      "src": "api/proxy/[...path].js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/comics/(.*)",
+      "dest": "/api/proxy/$1"
     }
   ]
 }
