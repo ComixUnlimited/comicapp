@@ -13,7 +13,7 @@ exports.DC = {
 };
 
 exports.Marvel = {
-    marvelHome: "http://localhost:4000/comics/cat/marvel/page"
+    marvelHome: "http://comixunlimited.vercel.app/comics/cat/marvel/page"
 };
 
 exports.otherComics = {
