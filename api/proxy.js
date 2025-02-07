@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 export default async function handler(req, res) {
+  console.log('Request URL:', req.url); // Logs the full URL of the request (useful for debugging)
+
   // Define the route for proxying comics requests
   if (req.method === 'GET' && req.url.startsWith('/comics/')) {
     // Create the target URL by removing the '/comics' prefix from the original URL
@@ -21,10 +23,11 @@ export default async function handler(req, res) {
     } catch (error) {
       console.error('Error fetching data from the external API:', error);
 
-      // If something goes wrong, send a 500 error with a detailed message
+      // If something goes wrong, send a 500 error with detailed message
       res.status(500).send({
         message: 'Error fetching data from the external API',
         error: error.message,
+        stack: error.stack, // Include the stack trace for debugging
       });
     }
   } else {
