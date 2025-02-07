@@ -1,41 +1,41 @@
-import axios from 'axios';
+// api/proxy.js
 
-export default async function handler(req, res) {
-  // Handle CORS Pre-flight requests (for OPTIONS method)
-  if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', '*');  // Allow any origin
-    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');  // Allow GET and OPTIONS methods
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');  // Allow Content-Type header
-    res.status(200).end();
-    return;
-  }
+const axios = require('axios');
+const cors = require('cors')({ origin: '*' });  // Enable CORS for all origins
 
-  // Only allow GET requests for proxying
-  if (req.method === 'GET') {
-    // Construct the target URL for the external API request
-    // Check if `req.query.path` is being passed correctly
-    const targetUrl = `https://getcomics.info/${req.query.path ? req.query.path.join('/') : ''}`;
+module.exports = async (req, res) => {
+  cors(req, res, async () => { // Enable CORS for each request
 
-    console.log('Forwarding request to:', targetUrl);  // Log the target URL
+    // Create the target URL by removing the '/comics' prefix from the original URL
+    const targetUrl = `https://getcomics.info${req.url.replace('/comics', '')}`;
+
+    console.log('Forwarding request to:', targetUrl);  // Log the full URL being requested
 
     try {
-      // Make the request to the external server
-      const response = await axios.get(targetUrl);
+      // Make the request to the external server (getcomics.info)
+      const response = await axios.get(targetUrl, {
+        headers: {
+          // Add a User-Agent header to mimic a browser (helps to avoid blocking by some APIs)
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        }
+      });
 
-      // Set CORS headers for the response
-      res.setHeader('Access-Control-Allow-Origin', '*');  // Allow any origin
+      // Set the necessary CORS headers for the response
+      res.setHeader('Access-Control-Allow-Origin', '*');  // Allow any origin to access the data
       res.setHeader('Access-Control-Allow-Methods', 'GET');  // Allow only GET method
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');  // Allow Content-Type header
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');  // Allow content-type header
 
-      // Send the external API's response to the client
-      res.status(200).json(response.data);
+      // Send the response from the external server back to the client
+      res.json(response.data);  // Forward the data from the external API
+
     } catch (error) {
-      // If an error occurs, send a 500 status with a message
-      console.error('Error fetching data from external API:', error);
-      res.status(500).json({ message: 'Error fetching data from external API', error: error.message });
+      console.error('Error fetching data from the external API:', error.response ? error.response.data : error.message);
+
+      // If something goes wrong, send a 500 error with a detailed message
+      res.status(500).send({
+        message: 'Error fetching data from the external API',
+        error: error.response ? error.response.data : error.message,
+      });
     }
-  } else {
-    // Handle any other methods (e.g., POST) if necessary
-    res.status(405).json({ message: 'Method Not Allowed' });
-  }
-}
+  });
+};
