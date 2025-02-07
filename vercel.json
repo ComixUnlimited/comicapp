@@ -1,8 +1,32 @@
 {
-    "rewrites": [
-      {
-        "source": "/proxy/:slug*",
-        "destination": "https://getcomics.info/:slug*"
-      }
-    ]
-  }
+  "rewrites": [
+    {
+      "source": "/comics/page",
+      "destination": "https://getcomics.info/page"
+    },
+    {
+      "source": "/comics/s/:search",
+      "destination": "https://getcomics.info/page?s=:search"
+    },
+    {
+      "source": "/comics/cat/dc/page",
+      "destination": "https://getcomics.info/cat/dc/page"
+    },
+    {
+      "source": "/comics/tag/dc-week/page",
+      "destination": "https://getcomics.info/tag/dc-week/page"
+    },
+    {
+      "source": "/comics/tag/vertigo/page",
+      "destination": "https://getcomics.info/tag/vertigo/page"
+    },
+    {
+      "source": "/comics/tag/wildstorm/page",
+      "destination": "https://getcomics.info/tag/wildstorm/page"
+    },
+    {
+      "source": "/comics/cat/marvel/page",
+      "destination": "https://getcomics.info/cat/marvel/page"
+    }
+  ]
+}
