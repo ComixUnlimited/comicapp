@@ -1,19 +1,19 @@
 
 exports.URL = {
-    base: "https://comixunlimited.vercel.app/api/proxy/page",
-    searchUri1: "https://comixunlimited.vercel.app/api/proxy/page",
+    base: "http://localhost:4000/comics/page",
+    searchUri1: "http://localhost:4000/comics/page",
     searchUri2: "?s="
 };
 
 exports.DC = {
-    dcHome: "https://comixunlimited.vercel.app/api/proxy/cat/dc/page",
-    dcWeek: "https://your-vercel-project-name.vercel.app/proxy/tag/dc-week/page",
-    dcVertigo: "https://your-vercel-project-name.vercel.app/comics/tag/vertigo/page",
-    dcWildstorm: "https://your-vercel-project-name.vercel.app/comics/tag/wildstorm/page"
+    dcHome: "http://localhost:4000/comics/cat/dc/page",
+    dcWeek: "http://localhost:4000/comics/tag/dc-week/page",
+    dcVertigo: "http://localhost:4000/comics/tag/vertigo/page",
+    dcWildstorm: "http://localhost:4000/comics/tag/wildstorm/page"
 };
 
 exports.Marvel = {
-    marvelHome: "https://comixunlimited.vercel.app/api/proxy/cat/marvel/page"
+    marvelHome: "http://localhost:4000/comics/cat/marvel/page"
 };
 
 exports.otherComics = {
