@@ -13,7 +13,10 @@ export default async function handler(req, res) {
   // Only allow GET requests for proxying
   if (req.method === 'GET') {
     // Construct the target URL for the external API request
-    const targetUrl = `https://getcomics.info/${req.query.path.join('/')}`;
+    // Check if `req.query.path` is being passed correctly
+    const targetUrl = `https://getcomics.info/${req.query.path ? req.query.path.join('/') : ''}`;
+
+    console.log('Forwarding request to:', targetUrl);  // Log the target URL
 
     try {
       // Make the request to the external server
