@@ -1,19 +1,19 @@
 
 exports.URL = {
-    base: "https://your-vercel-project-name.vercel.app/comics/page",
-    searchUri1: "https://your-vercel-project-name.vercel.app/comics/page",
+    base: "https://comixunlimited.app/api/comics/page",
+    searchUri1: "https://comixunlimited.app/api/comics/page",
     searchUri2: "?s="
 };
 
 exports.DC = {
-    dcHome: "https://your-vercel-project-name.vercel.app/comics/cat/dc/page",
+    dcHome: "https://comixunlimited.app/api/comics/cat/dc/page",
     dcWeek: "https://your-vercel-project-name.vercel.app/comics/tag/dc-week/page",
     dcVertigo: "https://your-vercel-project-name.vercel.app/comics/tag/vertigo/page",
     dcWildstorm: "https://your-vercel-project-name.vercel.app/comics/tag/wildstorm/page"
 };
 
 exports.Marvel = {
-    marvelHome: "https://your-vercel-project-name.vercel.app/comics/cat/marvel/page"
+    marvelHome: "https://comixunlimited.app/api/comics/cat/marvel/page"
 };
 
 exports.otherComics = {
