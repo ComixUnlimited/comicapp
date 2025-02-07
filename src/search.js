@@ -32,7 +32,7 @@ export const getComicsThroughSearch = (query, page = 1) => {
               const targetUrl = href.replace('https://getcomics.org', '');
 
               // Route through the proxy server with the modified href
-              axios(`https://comixunlimited.vercel.app/comics${targetUrl}`).then(response => {
+              axios(`http://localhost:4000/comics${targetUrl}`).then(response => {
                 const $ = cheerio.load(response.data);
 
                 const title = $('.post-info').find('h1').text().trim();
