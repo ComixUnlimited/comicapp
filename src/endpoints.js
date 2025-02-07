@@ -1,19 +1,19 @@
 
 exports.URL = {
-    base: "http://localhost:4000/comics/page",
-    searchUri1: "http://localhost:4000/comics/page",
+    base: "https://getcomics.info/page",
+    searchUri1: "https://getcomics.info/page",
     searchUri2: "?s="
 };
 
 exports.DC = {
-    dcHome: "http://localhost:4000/comics/cat/dc/page",
-    dcWeek: "http://localhost:4000/comics/tag/dc-week/page",
-    dcVertigo: "http://localhost:4000/comics/tag/vertigo/page",
-    dcWildstorm: "http://localhost:4000/comics/tag/wildstorm/page"
+    dcHome: "https://getcomics.info/cat/dc/page",
+    dcWeek: "https://getcomics.info/tag/dc-week/page",
+    dcVertigo: "https://getcomics.info/tag/vertigo/page",
+    dcWildstorm: "https://getcomics.info/tag/wildstorm/page"
 };
 
 exports.Marvel = {
-    marvelHome: "http://localhost:4000/comics/cat/marvel/page"
+    marvelHome: "https://getcomics.info/cat/marvel/page"
 };
 
 exports.otherComics = {
