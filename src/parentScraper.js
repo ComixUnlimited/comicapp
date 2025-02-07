@@ -19,7 +19,7 @@ export const parentScraper = (uri, page) => {
           // If the href is a full URL (https://getcomics.org/...), remove the base part
           if (href.startsWith('https://getcomics.org')) {
             // Remove 'https://getcomics.org' and replace with the proxy URL base
-            href = href.replace('https://getcomics.org', 'https://comixunlimited.app/api/comics');
+            href = href.replace('https://getcomics.org', 'https://comixunlimited.vercel.app/api/comics');
           }
 
           // Only include individual comics, not bundles
