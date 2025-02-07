@@ -1,7 +1,7 @@
 const { Marvel } = require('./endpoints');
 const {parentScraper} = require('./parentScraper')
 
-export const getMarvelComics = async (page) => {
-    const uri = fixCorsErrors(Marvel.marvelHome)
+exports.getMarvelComics = async (page) => {
+    const uri = Marvel.marvelHome
     return await parentScraper(uri,page)
 };
