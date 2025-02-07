@@ -9,7 +9,7 @@
         "destination": "https://getcomics.info/cat/dc/page/"
       },
       {
-        "source": "/comics/dc-week/1",
+        "source": "/comics/dc-week/page",
         "destination": "https://getcomics.info/tag/dc-week/page/"
       },
       {
@@ -17,8 +17,8 @@
         "destination": "https://getcomics.info/tag/vertigo/page/"
       },
       {
-        "source": "/comics/wildstorm/1",
-        "destination": "https://getcomics.info/tag/wildstorm/page/:page"
+        "source": "/comics/wildstorm/page",
+        "destination": "https://getcomics.info/tag/wildstorm/page/"
       },
       {
         "source": "/comics/page",
