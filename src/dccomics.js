@@ -1,9 +1,8 @@
 const { DC } = require('./endpoints');
 const { parentScraper } = require('./parentScraper');
-import { fixCorsErrors } from 'fix-cors-errors';
 
 exports.getDCComics = async (page) => {
-    const uri = fixCorsErrors(DC.dcHome);
+    const uri = DC.dcHome;
     return await parentScraper(uri, page);
 };
 
