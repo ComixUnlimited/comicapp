@@ -1,37 +1,36 @@
 import axios from 'axios';
 
+// This is the proxy handler for Vercel
 export default async function handler(req, res) {
-  console.log('Request URL:', req.url); // Logs the full URL of the request (useful for debugging)
-
-  // Define the route for proxying comics requests
-  if (req.method === 'GET' && req.url.startsWith('/comics/')) {
-    // Create the target URL by removing the '/comics' prefix from the original URL
-    const targetUrl = `https://getcomics.info${req.url.replace('/comics', '')}`;
-    console.log('Forwarding request to:', targetUrl);  // Log the full URL being requested
+  // Only handle GET requests
+  if (req.method === 'GET') {
+    // Extract the path that will be appended to the target URL (after /api/comics)
+    const targetUrl = `https://getcomics.info${req.url.replace('/api/comics', '')}`;
+    
+    console.log('Proxying request to:', targetUrl); // For debugging purposes
 
     try {
-      // Make the request to the external server (getcomics.info)
+      // Make the request to the external getcomics.info API
       const response = await axios.get(targetUrl);
 
-      // Set CORS headers (optional but needed for frontend apps to access the API)
-      res.setHeader('Access-Control-Allow-Origin', '*');  // Allow any origin to access the data
-      res.setHeader('Access-Control-Allow-Methods', 'GET');  // Allow only GET method
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');  // Allow content-type header
+      // Set the CORS headers to allow access from any origin
+      res.setHeader('Access-Control-Allow-Origin', '*');  // Allow any origin
+      res.setHeader('Access-Control-Allow-Methods', 'GET');  // Allow only GET
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');  // Allow Content-Type
 
-      // Send the response from the external server back to the client
-      res.status(200).json(response.data);  // Forward the data from the external API
+      // Return the data from the external server back to the client
+      res.status(200).json(response.data);
     } catch (error) {
       console.error('Error fetching data from the external API:', error);
 
-      // If something goes wrong, send a 500 error with detailed message
-      res.status(500).send({
+      // Return error if the external API fails
+      res.status(500).json({
         message: 'Error fetching data from the external API',
         error: error.message,
-        stack: error.stack, // Include the stack trace for debugging
       });
     }
   } else {
-    // Handle unsupported methods or routes
-    res.status(404).send({ message: 'Not Found' });
+    // If the method is not GET, return a 404 Not Found
+    res.status(404).json({ message: 'Route not found' });
   }
 }
