@@ -5,7 +5,6 @@ import infoScraper from './infoScraper';
 export const parentScraper = (uri, page) => {
   return new Promise((resolve, reject) => {
     const targetUrl = `${uri}/${page}`;  // Construct the URL for the page to scrape
-    console.log('Fetching parent URL:', targetUrl);  // Log the parent URL being fetched
 
     axios(targetUrl)
       .then(response => {
@@ -20,16 +19,12 @@ export const parentScraper = (uri, page) => {
           // If the href is a full URL (https://getcomics.org/...), remove the base part
           if (href.startsWith('https://getcomics.org')) {
             // Remove 'https://getcomics.org' and replace with the proxy URL base
-            href = href.replace('https://getcomics.org', 'https://comicapp-rho.vercel.app/comics');
+            href = href.replace('https://getcomics.org', 'http://localhost:4000/comics');
           }
-
-          console.log('Fetching comic link:', href);  // Log the comic link being fetched
 
           // Only include individual comics, not bundles
           if (valid) {
             const promise = new Promise((resolve, reject) => {
-              console.log('Fetching comic details from:', href);  // Log the URL being fetched for comic details
-
               axios(href)
                 .then(response => {
                   const $ = load(response.data);
@@ -58,7 +53,6 @@ export const parentScraper = (uri, page) => {
                   resolve(comic);
                 })
                 .catch(err => {
-                  console.error('Error fetching comic details:', err);  // Log error if any while fetching comic details
                   reject(err);
                 });
             });
@@ -70,7 +64,6 @@ export const parentScraper = (uri, page) => {
         resolve(Promise.all(comics));
       })
       .catch(err => {
-        console.error('Error fetching parent page:', err);  // Log error if any while fetching parent page
         reject(err);
       });
   });
