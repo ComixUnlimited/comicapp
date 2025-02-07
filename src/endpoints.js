@@ -6,14 +6,14 @@ exports.URL = {
 };
 
 exports.DC = {
-    dcHome: "https://comixunlimited.vercel.app/comics/cat/dc/page",
+    dcHome: "http://localhost:4000/comics/cat/dc/page",
     dcWeek: "http://localhost:4000/comics/tag/dc-week/page",
     dcVertigo: "http://localhost:4000/comics/tag/vertigo/page",
     dcWildstorm: "http://localhost:4000/comics/tag/wildstorm/page"
 };
 
 exports.Marvel = {
-    marvelHome: "https://comixunlimited.vercel.app/comics/cat/marvel/page"
+    marvelHome: "http://localhost:4000/comics/cat/marvel/page"
 };
 
 exports.otherComics = {
