@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/comics/:path*",
-      "destination": "/api/proxy/:path*"
+      "source": "/comics/*",
+      "destination": "/api/proxy/*"
     }
   ]
 }
