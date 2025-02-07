@@ -1,18 +1,35 @@
 {
-    "headers": [
-      {
-        "source": "/api/(.*)",
-        "headers": [
-          { "key": "Access-Control-Allow-Origin", "value": "*" },
-          { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-          { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
-        ]
-      }
-    ],
     "rewrites": [
       {
-        "source": "/comics/:path*",
-        "destination": "/api/proxy/:path*"
+        "source": "/comics/marvel/:page",
+        "destination": "https://getcomics.info/cat/marvel/page/:page"
+      },
+      {
+        "source": "/comics/dc/:page",
+        "destination": "https://getcomics.info/cat/dc/page/:page"
+      },
+      {
+        "source": "/comics/dc-week/:page",
+        "destination": "https://getcomics.info/tag/dc-week/page/:page"
+      },
+      {
+        "source": "/comics/vertigo/:page",
+        "destination": "https://getcomics.info/tag/vertigo/page/:page"
+      },
+      {
+        "source": "/comics/wildstorm/:page",
+        "destination": "https://getcomics.info/tag/wildstorm/page/:page"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/comics/*",
+        "headers": [
+          { "key": "Access-Control-Allow-Origin", "value": "*" },
+          { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
+          { "key": "Access-Control-Allow-Headers", "value": "Content-Type, X-Requested-With" }
+        ]
       }
     ]
   }
+  
