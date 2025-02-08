@@ -217,8 +217,8 @@ form button:hover {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  height: 100vh; /* Full height of the viewport */
-  overflow: hidden; /* Prevents scrolling of the whole page */
+  height: 100%; /* Full height of the viewport */
+  overflow-y: auto;
   color: #fff; /* Make the text white */
 }
 
