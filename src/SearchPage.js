@@ -46,7 +46,7 @@ const SearchPage = () => {
       <form onSubmit={handleSearchSubmit}>
         <input 
           type="text" 
-          placeholder="Enter Comic Name" 
+          placeholder="Enter Comic Issue or Trade PaperBack Name" 
           value={searchQuery} 
           onChange={(e) => setSearchQuery(e.target.value)} 
         />
